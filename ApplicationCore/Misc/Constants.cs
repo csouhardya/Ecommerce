@@ -7,6 +7,7 @@ namespace ApplicationCore.Misc
         #region CacheKeys
         public const string AllProductCacheKey = "all_products";
         public const string AllOrdersCacheKey = "all_orders";
+        public const string SampleProductsCacheKey = "sample_products";
         #endregion
 
         #region HashingConstants

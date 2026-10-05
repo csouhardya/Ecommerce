@@ -28,9 +28,9 @@ namespace ApplicationCore.Services
         /// Retrieves all products.
         /// </summary>
         /// <returns>A task that resolves to the list of all products.</returns>
-        public async Task<List<Product>> GetProductsAsync()
+        public async Task<List<Product>> GetProductsAsync(bool useCache = true)
         {
-            var query = new GetProductsQuery();
+            var query = new GetProductsQuery(useCache);
             _logger.Information($"Sending query to GET products handler");
             var products = await _sender.Send(query);
             return products;

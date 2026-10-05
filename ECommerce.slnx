@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/DataAccess/" />
+  <Folder Name="/DataAccess/DDL/" />
+  <Folder Name="/DataAccess/DML/" />
+  <Project Path="D:/Code/C#/Ecommerce/ApplicationCore/ApplicationCore.csproj" />
+  <Project Path="D:/Code/C#/Ecommerce/WebAPI/WebAPI.csproj" />
+</Solution>

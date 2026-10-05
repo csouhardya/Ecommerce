@@ -8,7 +8,7 @@ namespace ApplicationCore.Interfaces
         /// Retrieves all products.
         /// </summary>
         /// <returns>A task that resolves to a list of all products.</returns>
-        Task<List<Product>> GetProductsAsync();
+        Task<List<Product>> GetProductsAsync(bool useCache = false);
 
         /// <summary>
         /// Retrieves products filtered, sorted and paginated based on provided parameters.

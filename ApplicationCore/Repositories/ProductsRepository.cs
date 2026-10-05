@@ -78,7 +78,10 @@ namespace ApplicationCore.DataAccess
                 name = product.Name,
                 sku = product.Sku,
                 currency = product.Currency,
-                amount = product.Amount
+                amount = product.Amount,
+                description = product.Description,
+                image = product.Image,
+                content_type = product.ImageContentType
             },
             commandType: CommandType.StoredProcedure);
             return result;
@@ -108,6 +111,13 @@ namespace ApplicationCore.DataAccess
             },
             commandType: CommandType.StoredProcedure);
             return result;
+        }
+
+        public async Task<List<Product>> GetSamplesAsync()
+        {
+            await using var conn = await _connectionProvider.ConnectAsync();
+            var result = await conn.QueryAsync<Product>("spGetSampleProducts", commandType : CommandType.StoredProcedure);
+            return result.ToList();
         }
 
     }

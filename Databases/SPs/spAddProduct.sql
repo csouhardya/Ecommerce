@@ -3,8 +3,11 @@ CREATE OR ALTER PROCEDURE spAddProduct
 @name NVARCHAR(MAX),
 @sku NVARCHAR(50),
 @currency NVARCHAR(5),
-@amount DECIMAL
+@amount DECIMAL,
+@description NVARCHAR(MAX),
+@image VARBINARY(MAX),
+@content_type NVARCHAR(MAX)
 AS
 BEGIN
-	INSERT INTO dbo.products(guid, name, sku,currency, amount) VALUES (@guid, @name, @sku, @currency, @amount)
+	INSERT INTO dbo.products(guid, name, sku,currency, amount, description, image, content_type) VALUES (@guid, @name, @sku, @currency, @amount, @description, @image, @content_type)
 END

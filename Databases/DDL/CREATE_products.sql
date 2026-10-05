@@ -4,5 +4,8 @@ Create TABLE dbo.products (
 	name NVARCHAR(MAX) NOT NULL,
 	sku NVARCHAR(50) NOT NULL,
 	currency NVARCHAR(5) NOT NULL,
-	amount DECIMAL(18,2) NOT NULL
+	amount DECIMAL(18,2) NOT NULL,
+	description NVARCHAR(MAX) NOT NULL,
+	image VARBINARY(MAX) NOT NULL,
+	content_type NVARCHAR(30) NOT NULL
 )

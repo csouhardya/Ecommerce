@@ -20,6 +20,8 @@ namespace ApplicationCore.Interfaces
         /// <returns>List of products.</returns>
         Task<List<Product>> GetAllAsync();
 
+        Task<List<Product>> GetSamplesAsync();
+
         /// <summary>
         /// Retrieves a single product by its GUID asynchronously.
         /// </summary>

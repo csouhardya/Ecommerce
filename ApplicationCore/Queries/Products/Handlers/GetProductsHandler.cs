@@ -31,7 +31,7 @@ namespace ApplicationCore.Queries.Products.Handlers
         /// </summary>
         public async Task<List<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = await GetProductsAsync();
+            var products = await GetProductsAsync(request.useCache);
             return products;
         }
 
@@ -102,15 +102,29 @@ namespace ApplicationCore.Queries.Products.Handlers
             return products.Provider.CreateQuery<Product>(result);
         }
 
-        private async Task<List<Product>> GetProductsAsync()
+        private async Task<List<Product>> GetProductsAsync(bool useCache = true)
         {
-            var data = _cahcingService.GetData<List<Product>>(Constants.AllProductCacheKey);
-            if (data is null || data?.Count == 0)
+            List<Product>? data;
+            if(useCache)
             {
-                data = await _productsRepo.GetAllAsync();
-                _cahcingService.SetData<List<Product>>(Constants.AllProductCacheKey, data);
+                data = _cahcingService.GetData<List<Product>>(Constants.SampleProductsCacheKey);
+                if (data is null || data?.Count == 0)
+                {
+                    data = await _productsRepo.GetSamplesAsync(); // Only for home page where we show few items per category
+                    _cahcingService.SetData<List<Product>>(Constants.SampleProductsCacheKey, data);
+                }
+            }
+            else
+            {
+                data = _cahcingService.GetData<List<Product>>(Constants.AllProductCacheKey); // for admin view only
+                if (data is null || data?.Count == 0)
+                {
+                    data = await _productsRepo.GetAllAsync();
+                    _cahcingService.SetData<List<Product>>(Constants.AllProductCacheKey, data);
+                }
             }
             return data;
+
         }
     }
 }

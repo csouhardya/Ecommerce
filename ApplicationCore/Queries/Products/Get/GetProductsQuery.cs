@@ -6,7 +6,7 @@ namespace ApplicationCore.Queries.Products.Get
     /// <summary>
     /// Request to retrieve all products.
     /// </summary>
-    public record GetProductsQuery : IRequest<List<Product>>;
+    public record GetProductsQuery(bool useCache = true) : IRequest<List<Product>>;
 
     /// <summary>
     /// Request to retrieve products filtered by search term with optional sorting and pagination.

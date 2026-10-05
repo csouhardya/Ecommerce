@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <returns>HTTP 200 with a list of products.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProducts(bool useCache = true)
         {
             _logger.Information("Fetching all products");
             var products = await _productsService.GetProductsAsync();
@@ -73,10 +73,11 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> AddProduct(Product product)
+        public async Task<IActionResult> AddProduct([FromForm] ProductDto request)
         {
             // TODO : validate
-            _logger.Information($"Adding new product {product.Name}");
+            _logger.Information($"Adding new product {request.Name}");
+            Product product = await MapDtoToProductModel(request);
             var isAdded = await _productsService.AddProductAsync(product);
             if (isAdded)
             {
@@ -114,6 +115,27 @@ namespace WebAPI.Controllers
                 return NoContent();
             }
             return BadRequest();
+        }
+
+        private async Task<Product> MapDtoToProductModel(ProductDto request)
+        {
+            byte[] imageBytes = [];
+            if(request.Image != null)
+            {
+                using var memoryStream = new MemoryStream();
+                await request.Image.CopyToAsync(memoryStream);
+                imageBytes = memoryStream.ToArray();
+            }
+            Product product = new()
+            {
+                Name = request.Name,
+                Sku = request.Sku,
+                Amount = request.Amount,
+                Description = request.Description,
+                Image = imageBytes,
+                ImageContentType = request.Image!.ContentType
+            };
+            return product;
         }
     }
 }
