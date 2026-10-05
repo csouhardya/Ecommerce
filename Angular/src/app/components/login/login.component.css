@@ -1,0 +1,101 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+:host {
+  display: block;
+  height: 100vh;
+  background-color: #000;
+  font-family: 'Space Mono', monospace;
+}
+
+a {
+  color: rgb(163, 230, 53);
+}
+/* Center the container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95%;
+}
+
+.login-wrapper {
+  width: 300px;
+}
+
+/* Box in the middle */
+.login-box {
+  border: 1px solid rgb(163, 230, 53);
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
+}
+
+.login form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Inputs stacked */
+.login input {
+  background-color: #000;
+  border: 1px solid rgb(163, 230, 53);
+  padding: 0.6rem;
+  color: rgb(163, 230, 53);
+  outline: none;
+  font-family: inherit;
+}
+
+/* Input focus glow */
+.login input:focus {
+  box-shadow: 0 0 6px rgb(163, 230, 53);
+}
+
+/* Button styling */
+.login button {
+  background-color: rgb(163, 230, 53);
+  color: #000;
+  border: none;
+  padding: 0.7rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.2s ease;
+}
+
+/* Button hover effect */
+.login button:hover {
+  box-shadow: 0 0 10px rgb(163, 230, 53);
+  transform: translateY(-1px);
+}
+
+.navbar-brand {
+    margin-left: 2%;
+    
+}
+
+.navbar-brand:hover {
+  color: rgb(163, 230, 53);
+  text-shadow: 0 0 10px rgb(163, 230, 53);
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.links a {
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-shadow: 0 0 6px rgb(163, 230, 53);
+}
+
+.validation-message {
+  color: #ff073a;
+}
+
+.invalid-input {
+  border: 1px solid #ff073a !important;
+}

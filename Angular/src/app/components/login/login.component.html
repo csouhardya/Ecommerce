@@ -1,0 +1,31 @@
+<nav class="navbar">
+  <a class="navbar-brand" href="#">LearnRestApi</a>
+</nav>
+<div class="login-container">
+    <div class="login-wrapper">
+        <div class="login-box">
+          <div class="login">
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <input type="text" [ngClass]="{ 'invalid-input': username?.invalid && username?.touched }" placeholder="Username" formControlName="username"/>
+                @if(username?.hasError('required') && username?.touched) {
+                  <span class="validation-message"> username input field is required.</span>
+                }
+                <input type="password" placeholder="Password" [ngClass]="{ 'invalid-input': password?.invalid && password?.touched }" formControlName="password" />
+                @if(password?.hasError('required') && password?.touched) {
+                  <span class="validation-message">password field is required.</span>
+                }
+                @if(password?.errors?.['minlength'] && password?.touched) {
+                  <span class="validation-message">password length must be more than 8 characters.</span>
+                }
+                <br>
+                <button class="btn-login" type="submit" [disabled]="loginForm.invalid">Login</button>
+              </form> 
+          </div>
+          <div class="links">
+            <a class="register" [routerLink]="['/register']" routerLinkActive="router-link-active"><span>Register user</span></a>
+            <a class="forgotPassword" [routerLink]="['/forgotpassword']" routerLinkActive="router-link-active"><span>Forgot password?</span></a>
+          </div>
+        </div> 
+    </div>
+</div>
+<app-footer></app-footer>
